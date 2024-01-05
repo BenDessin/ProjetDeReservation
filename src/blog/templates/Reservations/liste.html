@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block titre %}Liste des réservations{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for obj in listes %}
+        <div class="d-flex align-items-center bg-light col-12 my-3 my-md-2 col-md-6">
+            <div class="col-6">
+                <strong class="d-inline-block mb-2 text-primary-emphasis">Nom : {{ obj.nom }}</strong>
+                <p class="mb-0">Tel : {{ obj.numero }}</p>
+                <p class="card-text mb-auto">Domicile : {{ obj.residence }}</p>
+                <p class="card-text mb-auto">Format : {{ obj.format }}</p>
+                <p class="card-text mb-auto">Evènement : {{ obj.event }}</p>
+                <p class="card-text mb-auto">reservé le : {{ obj.date }}</p>
+                <p class="card-text mb-auto">date de remise : {{ obj.date_remise|date:"j F,Y"}}</p>
+                <a download="{{ obj.nom }}" href="{{ obj.image.url }}" type="button" class="btn btn-primary btn-sm">Télécharger l'image</a>
+            </div>
+            <div class="col-6">
+                <img src="{{ obj.image.url }}" alt="image1" class="w-100 h-100">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+
+{% block titre %}Liste des réservations{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if not obj %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6">
+                    <p>Vous n'avez pas de réservations</p>
+                    <p><a class="btn btn-lg btn-primary" href="{% url 'blog:reserve' %}">Reserver maintenant</a></p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        {% for obj in panier %}
+        <div class="d-flex align-items-center bg-light col-12 my-3 my-md-2 col-md-6">
+            <div class="col-6">
+                <strong class="d-inline-block mb-2 text-primary-emphasis">Nom : {{ obj.nom }}</strong>
+                <p class="mb-0">Tel : {{ obj.numero }}</p>
+                <p class="card-text mb-auto">Domicile : {{ obj.residence }}</p>
+                <p class="card-text mb-auto">Format : {{ obj.format }}</p>
+                <p class="card-text mb-auto">Evènement : {{ obj.event }}</p>
+                <p class="card-text mb-auto">reservé le : {{ obj.date }}</p>
+                <p class="card-text mb-auto">date de remise : {{ obj.date_remise|date:"j F,Y"}}</p>
+            </div>
+            <div class="col-6">
+                <img src="{{ obj.image.url }}" alt="image1" class="w-100 h-100">
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-12 col-md-6">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-bd-primary">Connexion</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
