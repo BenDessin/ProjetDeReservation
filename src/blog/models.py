@@ -21,6 +21,12 @@ class Cathegorie(models.Model):
     cathegorie = models.CharField(max_length=255, verbose_name="cathegorie")
     def __str__(self):
         return self.cathegorie
+    
+class Personnel(models.Model):
+    nom = models.CharField(max_length=255, verbose_name="nom")
+    code = models.CharField(max_length=255, verbose_name="code")
+    def __str__(self):
+        return self.cathegorie
 #endnouveau
 
 class Cadre(models.Model):
@@ -42,6 +48,7 @@ class Reservation(models.Model):
     date_remise = models.DateField(blank=True)
     auth = models.ForeignKey(ProfilUser, on_delete=models.CASCADE, null=True)
     cathegorie = models.ForeignKey(Cathegorie, on_delete=models.SET_NULL, null=True)#modifier
+    personnel = models.ForeignKey(Personnel, on_delete=models.SET_NULL,blank=True, null=True)#modifier
     
     class Meta:
         ordering = ['-date']
